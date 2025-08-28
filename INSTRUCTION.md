@@ -1,9 +1,7 @@
 http://localhost:30008/
-kubectl get pods
-kubectl exec todoapp-6dbd8c574d-2lg7v -it -- sh 
-ls
-cd configs
-ls
-cd ../secrets
-ls
-cat SECRET_KEY
+
+kubectl exec $(kubectl get pod -l app=todoapp -n todoapp -o jsonpath='{.items[0].metadata.name}') -n todoapp -it -- sh
+touch /app/data/testfile
+ls -l /app/data
+ls -1 /app/configs
+ls -l /app/secrets
